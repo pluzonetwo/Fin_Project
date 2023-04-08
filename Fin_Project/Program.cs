@@ -2,39 +2,41 @@
 // либо равна 3 символам. Первоначальный массив можно ввести с клавиатуры, либо задать на старте выполнения алгоритма. 
 // При решении не рекомендуется пользоваться коллекциями, лучше обойтись исключительно массивами.
 
-string[] initialArr = { "Sunday", "Monday", "Tusday", "Wednesday", "Thur", "Friday", "Saturday" };
+string[] initialArr = { "Mo", "Wednesday", "Th", "Fri", "S" };
 
 string[] ChangeArr(string[] someArr)
 {
-    string[] resultArr = new string[someArr.Length];
+    int count = 0;
 
-    for (int i = 0; i < resultArr.Length; i++)
+    for (int i = 0; i < someArr.Length; i++)
     {
         if (someArr[i].Length <= 3)
         {
-            resultArr[i] = someArr[i];
+            count++;
         }
     }
 
-    return resultArr;
+    string[] resultArr = new string[count];
+
+    return FillResultArr(resultArr);
 };
 
-string[] RemoveNullStr(string[] someArr)
+string[] FillResultArr(string[] someArr)
 {
-    string[] resultArr = new string[someArr.Length];
+    int j = 0;
 
-    for (int i = 0; i < resultArr.Length; i++)
+    for (int i = 0; i < initialArr.Length; i++)
     {
-        if (someArr[i].Length != 0)
+        if (initialArr[i].Length <= 3)
         {
-            resultArr[i] = someArr[i];
+            someArr[j] = initialArr[i];
+            j++;
         }
     }
 
-    return resultArr;
+    return someArr;
 }
 
 string[] changeArr = ChangeArr(initialArr);
-string[] finalArr = RemoveNullStr(changeArr);
 
-System.Console.Write($"Update array: [{string.Join(", ", finalArr)}]");
+System.Console.Write($"Update array: [{string.Join(", ", changeArr)}]");
